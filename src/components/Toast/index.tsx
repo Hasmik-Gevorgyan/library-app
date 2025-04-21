@@ -1,25 +1,32 @@
-import Stack from '@mui/joy/Stack';
-import Snackbar from '@mui/joy/Snackbar';
+import * as React from 'react';
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 
-type ToastProps = {
+interface ToastProps {
+  open: boolean;
   message: string;
   onClose: () => void;
-  duration?: number;
-  isOpen: boolean;
-};
+}
+export default function Toast({open, message, onClose}: ToastProps) {
 
-export default function Toast({message, isOpen, duration, onClose}: ToastProps) {
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason,
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    onClose();
+  };
+
   return (
-    <Stack spacing={2} sx={{ alignItems: 'center' }}>
+    <div>
       <Snackbar
-        autoHideDuration={duration}
-        open={isOpen}
-        variant='outlined'
-        color='success'
-        onClose={onClose}
-      >
-        {message}
-      </Snackbar>
-    </Stack>
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message={message}
+      />
+    </div>
   );
 }

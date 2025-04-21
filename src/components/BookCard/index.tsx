@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import { Bookmark, BookmarkBorder } from '@mui/icons-material';
 
-
 interface BookCardProps {
     author_name: string[];
     cover_i: string;

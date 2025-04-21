@@ -6,6 +6,7 @@ import { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import Pagination from './components/Pagination';
 import './App.css';
+
 const App = () => {
   const { mode, toggleColorMode } = useThemeContext();
   const [page, setPage] = useState(1);
